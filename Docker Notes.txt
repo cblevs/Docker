@@ -1,0 +1,15 @@
+cmds:
+ - docker run "container name": runs a container in attached mode, keeping you from inputting other commands until you stop the container
+ - docker start "container name": starts a container in detached mode, allowing you to input other commands, but if you need to input values in the cmd line, you can't do so
+ - docker ps: gets a list of all the running containers
+ - docker --help: shows a list of commands
+ - docker logs "container name": shows all the logs for a specific container
+ - docker logs -f "container name": shows all the logs for a specific container and follows them
+ - docker stop "container name": stops a container
+ - docker start -a "container name": starts a container in attached mode
+ - docker start -d "container name": starts a container in detached mode
+ - docker attach "container name": attaches you to a running container
+ - docker run -i "container name": Keep STDIN (Standard Input) even if not attached
+ - docker run -t "container name": allocate a pseudo-TTY, creates a terminal exposed by the container
+ - docker run -it "container name": combines the two above, allows for user input
+ - docker start -ai "container name": start version of the above
