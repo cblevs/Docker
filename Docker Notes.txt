@@ -1,4 +1,5 @@
 cmds:
+ - docker build .: builds an image with the dockerfile and provided code in the current app folder to be used to spin up containers later
  - docker run "container name": runs a container in attached mode, keeping you from inputting other commands until you stop the container
  - docker start "container name": starts a container in detached mode, allowing you to input other commands, but if you need to input values in the cmd line, you can't do so
  - docker ps: gets a list of all the running containers
@@ -13,3 +14,20 @@ cmds:
  - docker run -t "container name": allocate a pseudo-TTY, creates a terminal exposed by the container
  - docker run -it "container name": combines the two above, allows for user input
  - docker start -ai "container name": start version of the above
+ - docker rm "container name": remove container.  Can only remove stopped containers.
+ - docker container prune: remove all containers.
+ - docker images: shows all downloaded images
+ - docker rmi "image id's separated by white space": removes all the images in the provided list of images
+ - docker run --m "image id": creates a container based on the image, allowing you to interact with the container (go to web app and play with it), but if it's ever stopped, the container is removed
+ - docker run -p 3000:80 -d --rm "image id": creates a detached container based on the provided image and is auto deleted if it's ever stopped
+ - docker image inspect "image id": take a look at the data, settings, and specs for the image
+ - docker cp "source" "container name": copies a file from the source into the identified container/folder of the container.  source =  (dummy/. - all, dummy/file.txt - file).  container name = name:/path or folder
+		- Good to use for ini/config files.
+ - docker cp "container name" "source" : the above command but in reverse
+		- Allows you to copy a file from a container to your pc, so you can take a look at the source file within the container
+ - docker run -p 3000:80 -d --rm --name "desired name of container" "image id": allows you to assign a name to the container that will be created
+ - docker build -t "name":"tag" .: allows you to create an image with the provided name and tag, allows you to run a container on the named image (like an alias)
+		- name : tag = repository : tag
+		- repository - designates a specific group of images, like a namespace, Ex: node or python
+		- tag - specific/specialized image within a group of images, Ex: 14
+ - 
