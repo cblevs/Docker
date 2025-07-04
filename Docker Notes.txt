@@ -30,4 +30,25 @@ cmds:
 		- name : tag = repository : tag
 		- repository - designates a specific group of images, like a namespace, Ex: node or python
 		- tag - specific/specialized image within a group of images, Ex: 14
- - 
+ - docker push "image_name": push docker image to docker hub
+ - docker pull "image_name": pull docker image from docker hub
+ - docker push/pull "host name":"image name": push and pull named images from an indicated docker repository
+ - !!! When pulling, docker will pull the latest image in your repository of the provided name.
+ - docker login: login to docker.combines
+ - !!!! When using docker run, if there's not an image on your machine with the specified tag, it will check your connected repository and pull down the latest image, but NOT CHECK FOR NEW UPDATES IF YOU ALREADY HAVE A LOCAL IMAGE
+ - docker volume ls: lists all docker created volumes
+ - docker run -d -p 3000:80 --rm --name feeback-app -v "name of volume":"path where files will be stored, ex: /app/feeback" feeback-node:volumes: Creates a container with a named volume and stores data in the specified path
+ - docker volume rm VOL_NAME: remove volumes
+ - volumes (anonymous and named) are managed by docker
+ - bind mounts are managed by you, great for persistent and editable data (by you), example: source code
+ - docker run -v "filepath of folder housing editable (source code) files":"where the files will be stored ex: /app"
+ - docker run -v "%cd%":/app: the same as above but where you're code is running from as a shortcut.
+ - docker run -d -p 3000:80 --name feedback-app -v feeback:/app/feedback -v "C:\VS Projects\Projects\Testing\Docker-Practical\data-volumes-01-starting-setup:/app" -v /app/node_modules feedback-node:volumes
+			- we had an error with the express module in the example.  This was initially installed when running the RUN npm install
+				command at the creation of the container.  Without "-v /app/node_modules", due to copying all files in the app 
+				folder, the work docker did to set up json and npm install folders is overwritten.  Adding 
+				the "-v /app/node_modules" anonymous volume (cuz there's no specified name) saves that folder so it can be 
+				used by the container/app when it's running.
+ - Why keep "COPY" in the dockerfile?  We add the source code directory for development so we can quickly add/see changes in the project.
+	But once we go to production, if we don't have the "COPY" instruction in our dockerfile (we won't have the volume creation in the 
+	production version once it's on a server), then it won't copy all the code for that project.
