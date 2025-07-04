@@ -52,3 +52,4 @@ cmds:
  - Why keep "COPY" in the dockerfile?  We add the source code directory for development so we can quickly add/see changes in the project.
 	But once we go to production, if we don't have the "COPY" instruction in our dockerfile (we won't have the volume creation in the 
 	production version once it's on a server), then it won't copy all the code for that project.
+ - .dockerignore - a file to add to your project so you can ignore certain folders when working with docker
